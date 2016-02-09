@@ -1,0 +1,75 @@
+class celestialObject{
+//"row" refers to the row of the database that the object is found in. 
+  int row;
+  String RV;
+  Table t;
+  Table t3=loadTable("SpaceBase.txt", "tsv");
+  public celestialObject(String name, Table t5){
+  row=findRow(name, t5);
+   t3=t5;
+  if (row<0){
+    
+    javax.swing.JOptionPane.showMessageDialog(null, "The object you are searching for is not in the database. Please enter a different object!");
+   row=1;
+   t3=t5;
+ 
+ }
+    
+    
+  }
+  int findRow(String search, Table t6){
+  boolean found=false;
+  int numRows=t6.getRowCount();
+  for (int i=0; i<numRows; i++){
+    if (t6.getString(i, 0).equals(search)){
+      row=i;
+      found=true;
+    }
+  }
+  if (found==false){
+      row=-1;
+    }
+  return row;
+}
+int getRow(){
+  return (this.row);
+}
+String rotationalVelocity(){
+  String RV=(this.t3.getString(row, 7));
+  return(RV);
+}
+PImage findImage(){
+  PImage fileName=varNames[0];
+  return(fileName);
+  
+}
+String getName(){
+  String name=(this.t3.getString(row,0));
+  return name.toUpperCase();
+}
+String getGalaxy(){
+  String galaxy=(this.t3.getString(row, 2));
+  return galaxy;
+}
+String getRV(){
+  String rotV=(this.t3.getString(row, 6));
+  return rotV;
+}
+String getOV(){
+  String orbV=(this.t3.getString(row, 8));
+  return orbV;
+}
+String getTemp(){
+  String temperature=(this.t3.getString(row, 7));
+  return temperature;
+}
+String getMass(){
+  String m=(this.t3.getString(row, 3));
+  //if 
+  return m;
+}
+String getDistance(){
+  String d=(this.t3.getString(row, 4));
+  return d;
+}
+}
