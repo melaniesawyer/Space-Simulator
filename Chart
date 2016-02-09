@@ -1,0 +1,36 @@
+float n=0.0;
+float m=0.0;
+
+Chart myChart;
+
+
+
+void drawChart() {
+textFont(f3);
+textSize(10);
+fill(208, 32, 144);
+textAlign(CENTER);
+text("1 second=1 Earth day", 930, 225);
+fill(173, 255, 47);
+text("1 minute=1 ly", 930, 245);
+  // unshift: add data from left to right (first in)
+  //myChart.unshift("world", 0.9);
+  myChart.push("world", n);
+  myChart.push("world", 100-n);
+  if(100-n<0){
+    n=0;
+  }
+  
+  
+  // push: add data from right to left (last in)
+  myChart.push("earth", m);
+  myChart.push("earth", m);
+  myChart.push("earth", 100-m);
+
+  if(100-m<0){
+    m=0;
+  }
+  n+=0.1;
+  m+=5;
+  
+}
