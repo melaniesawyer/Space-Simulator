@@ -1,0 +1,52 @@
+import controlP5.*;
+import java.util.*;
+PImage bg;
+PImage planet; 
+PShape globe;
+Table table;
+celestialObject C1;
+int row;
+PFont f; 
+PFont f3;
+String[] fileNames={"space.jpg", "sun.jpg","earth.jpg","moon.jpg", "mercury.jpg", "venus.jpg","mars.jpg","jupiter.jpg","saturn.jpg", "uranus.jpg", "pluto.jpg"};
+PImage[] varNames=new PImage[fileNames.length];
+//float a=0.0;
+int x;
+String mass;
+
+void setup(){
+  size(1024, 570, P3D);
+  for(int i=0; i<fileNames.length; i++){
+    varNames[i]=loadImage(fileNames[i]);
+  }
+  smooth();
+  setupField();
+  //index in array is 
+  table = loadTable("SpaceBase.txt", "tsv");
+  noStroke();
+  fill(204);
+  
+  bg=loadImage("space.jpg");
+  globe= createShape(SPHERE, 110);
+  f = createFont("Beirut",11,true);
+  f3=createFont("Silom", 26, true);
+  initializeSphere(300, 300);
+  //zoom();
+  
+}
+void draw() {
+  x = constrain(x, 0, bg.width - width);
+  set(-x, 0, bg);
+  x = frameCount/4;
+  if (isPressed){
+    drawChart();
+    displayData(C1);
+    PImage texture=(varNames[C1.row]);
+    textureSphere(100,100,100,texture);
+  }
+  }
+
+  
+  
+
+  
